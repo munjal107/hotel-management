@@ -1,9 +1,13 @@
 package com.hotel.management.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
+@ToString
 public class RoomBooked {
 
     public RoomBooked(){
@@ -15,13 +19,20 @@ public class RoomBooked {
     @Column(name = "booked_id")
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "amd_id")
     private Amenities amenities;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
+    @JsonIgnoreProperties({"hotel"})
     private Rooms rooms;
+
+    private double rate;
+
+//    @ManyToOne
+//    @JoinColumn(name="booking", referencedColumnName="booking_id")
+//    private Booking booking;
 
     public long getId() {
         return id;
@@ -46,4 +57,15 @@ public class RoomBooked {
     public void setRooms(Rooms rooms) {
         this.rooms = rooms;
     }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+
+
 }

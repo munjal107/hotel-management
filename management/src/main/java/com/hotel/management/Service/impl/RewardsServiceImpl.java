@@ -22,4 +22,16 @@ public class RewardsServiceImpl implements RewardsService {
         rewardsRepository.save(rewards);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<String> updateRewards(Rewards rewards) {
+        rewardsRepository.save(rewards);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @Override
+    public Rewards getRewardsByCustId(long id) {
+        Rewards rewards = rewardsRepository.findByCustId(id); //.orElse(null);
+        return rewards;
+    }
 }
