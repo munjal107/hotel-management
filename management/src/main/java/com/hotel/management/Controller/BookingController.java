@@ -127,5 +127,10 @@ public class BookingController {
 //        return null;
     }
 
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Booking> getBookingById(@PathVariable long id){
+        return bookingService.getBookingsById(id);
+    }
+
 
 }

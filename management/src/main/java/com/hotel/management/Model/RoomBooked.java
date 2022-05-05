@@ -1,6 +1,7 @@
 package com.hotel.management.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.ToString;
 
@@ -19,8 +20,9 @@ public class RoomBooked {
     @Column(name = "booked_id")
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "amd_id")
+//    @JsonIgnore
     private Amenities amenities;
 
     @OneToOne(fetch = FetchType.LAZY)

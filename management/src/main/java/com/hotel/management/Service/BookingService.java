@@ -14,4 +14,6 @@ public interface BookingService {
 
     public ResponseEntity<List<Booking>> getBookingsByHotelId(long id);
     public ResponseEntity<List<Booking>> getBookingsByCustId(long id);
+
+    public ResponseEntity<Booking> getBookingsById(long id);
 }

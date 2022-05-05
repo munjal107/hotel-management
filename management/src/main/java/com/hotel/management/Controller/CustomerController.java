@@ -6,6 +6,7 @@ import com.hotel.management.Service.CustomerService;
 import com.hotel.management.Service.HotelService;
 import com.hotel.management.Service.RewardsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class CustomerController {
 
 
 	@PostMapping("/signup")
-	public String addUser(@RequestBody Customer data) {
+	public ResponseEntity<String> addUser(@RequestBody Customer data) {
 		System.out.println("->"+data);
 		
 		String password = data.getPassword();
@@ -38,15 +39,14 @@ public class CustomerController {
 		password = encoder.encode(password);
 		data.setPassword(password);
 
-		customerService.addCustomer(data);
-		
-		return "success";
+		return customerService.addCustomer(data);
+
 	}
 
 	@PutMapping("/update/{id}")
-	public String updateCustomer(@RequestBody Customer c, @PathVariable long id){
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer c, @PathVariable long id){
 		customerService.updateCustomer(c, id);
-		return "success";
+		return customerService.updateCustomer(c, id);
 	}
 
 	// hotel-id
@@ -68,8 +68,15 @@ public class CustomerController {
 
 	}
 
+	@GetMapping("/profile/{id}")
+	public ResponseEntity<Customer> getCustomerProfile(@PathVariable long id){
+		Customer customer = customerService.getCustomerById(id);
+		return new ResponseEntity<>(customer, HttpStatus.OK);
+	}
 
-	
-	
-	
+
+
+
+
+
 }

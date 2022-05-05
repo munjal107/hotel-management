@@ -9,6 +9,7 @@ import com.hotel.management.dto.HotelRequestDto;
 import com.hotel.management.dto.RoomDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,7 +52,7 @@ public class HotelController {
 
     //add hotel
     @PostMapping("/add")
-    public ResponseEntity<String> addHotel(@RequestBody HotelRequestDto hotelRequestDto){
+    public ResponseEntity<Hotel> addHotel(@RequestBody HotelRequestDto hotelRequestDto){
 
         System.out.println(hotelRequestDto);
 
@@ -84,6 +85,12 @@ public class HotelController {
     @GetMapping("/search")
     public ResponseEntity<List<Hotel>> searchHotels(@RequestParam String query){
         return hotelService.searchHotels(query);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Hotel> getHotelById(@PathVariable long id){
+        Hotel hotel = hotelService.getHotelById(id);
+        return new ResponseEntity<>(hotel, HttpStatus.OK);
     }
 
 

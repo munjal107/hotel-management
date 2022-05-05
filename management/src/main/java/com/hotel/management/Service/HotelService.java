@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface HotelService {
 
-    public ResponseEntity<String> addHotel(Hotel hotel);
+    public ResponseEntity<Hotel> addHotel(Hotel hotel);
 
     public ResponseEntity<List<Hotel>> searchHotels(String query);
 

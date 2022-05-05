@@ -24,9 +24,9 @@ public class HotelServiceImpl implements HotelService {
     RoomRepository roomRepository;
 
     @Override
-    public ResponseEntity<String> addHotel(Hotel hotel) {
-        hotelRepository.save(hotel);
-        return new ResponseEntity<String>(hotel.toString(), HttpStatus.OK);
+    public ResponseEntity<Hotel> addHotel(Hotel hotel) {
+        Hotel result = hotelRepository.save(hotel);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @Override

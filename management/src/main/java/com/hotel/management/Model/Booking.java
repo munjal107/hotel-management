@@ -41,18 +41,21 @@ public class Booking {
     private int numberOfGuests;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")
     @JsonIgnoreProperties({"rooms","city","state","country","holidayMultiplier","seasonalMulitplier"})
+//    @JsonIgnore
     private Hotel hotel;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cust_id")
+//    @JsonIgnore
     @JsonIgnoreProperties({"email","password","address","dob","mobile"})
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"rooms"})
+//    @JsonIgnore
     private List<RoomBooked> roomBookedList;
 
     @Override

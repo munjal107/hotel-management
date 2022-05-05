@@ -2,6 +2,7 @@ package com.hotel.management.Service.impl;
 
 import com.hotel.management.Model.Booking;
 import com.hotel.management.Repository.BookingRepository;
+import com.hotel.management.Repository.HotelRepository;
 import com.hotel.management.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     BookingRepository bookingRepository;
+
+    @Autowired
+    HotelRepository hotelRepository;
 
     @Override
     public ResponseEntity<Booking> createBooking(Booking booking) {
@@ -42,11 +46,17 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public ResponseEntity<List<Booking>> getBookingsByHotelId(long id) {
-        return new ResponseEntity<>(bookingRepository.findBookingByHotelId(id),HttpStatus.OK);
+//        System.out.println(hotelRepository.findById(id));
+        return new ResponseEntity<>(bookingRepository.findBookingByHotel_Id(id),HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<List<Booking>> getBookingsByCustId(long id) {
         return new ResponseEntity<>(bookingRepository.findBookingByCustId(id), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Booking> getBookingsById(long id) {
+        return new ResponseEntity<>(bookingRepository.findById(id).orElse(null), HttpStatus.OK);
     }
 }
