@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer cust = customerRepository.findById(id).orElse(null);
 
-        cust.setDob(c.getDob());
+//        cust.setDob(c.getDob());
         cust.setEmail(c.getEmail());
         cust.setAddress(c.getAddress());
         cust.setName(c.getName());

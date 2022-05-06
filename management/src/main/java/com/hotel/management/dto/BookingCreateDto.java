@@ -19,6 +19,8 @@ public class BookingCreateDto {
     private double totalBill;
     private int numberOfGuests;
 
+    private double bonusUsed;
+
     private List<RoomBookedDto> roomBookedDtos;
 
 }

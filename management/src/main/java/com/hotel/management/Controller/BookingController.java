@@ -101,8 +101,9 @@ public class BookingController {
         // To-Do Update rewards points
         // now only do subtract loyalty bonus if user is using loyaly bonus to pay for total bill.
         Rewards rewards = rewardsService.getRewardsByCustId(customer.getId());
+        double bonusUsed = bookingCreateDto.getBonusUsed();
         double loyaltyBonus = rewards.getLoyaltyBonus();
-        loyaltyBonus = loyaltyBonus + booking.getTotalBill()*10;
+        loyaltyBonus = loyaltyBonus + booking.getTotalBill()*10 - bonusUsed;
         rewards.setLoyaltyBonus(loyaltyBonus);
         rewardsService.updateRewards(rewards);
 

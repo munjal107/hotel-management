@@ -3,20 +3,16 @@ package com.hotel.management.Controller;
 import com.hotel.management.Model.Hotel;
 import com.hotel.management.Model.HotelEmployee;
 import com.hotel.management.Model.Rooms;
-import com.hotel.management.Service.HotelEmployeeService;
 import com.hotel.management.Service.HotelService;
 import com.hotel.management.dto.HotelRequestDto;
 import com.hotel.management.dto.RoomDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +20,8 @@ import java.util.List;
 @RequestMapping("/hotel")
 public class HotelController {
 
-    @Autowired
-    HotelEmployeeService hotelEmployeeService;
+//    @Autowired
+//    HotelEmployeeService hotelEmployeeService;
 
     @Autowired
     HotelService hotelService;
@@ -35,20 +31,20 @@ public class HotelController {
         return "hello-2";
     }
 
-    @PostMapping("/signup")
-    public String addEmployee(@RequestBody HotelEmployee employee){
-
-        System.out.println("->"+employee);
-
-        String password = employee.getPassword();
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        password = encoder.encode(password);
-        employee.setPassword(password);
-
-        hotelEmployeeService.addEmployee(employee);
-
-        return "Success";
-    }
+//    @PostMapping("/signup")
+//    public String addEmployee(@RequestBody HotelEmployee employee){
+//
+//        System.out.println("->"+employee);
+//
+//        String password = employee.getPassword();
+//        PasswordEncoder encoder = new BCryptPasswordEncoder();
+//        password = encoder.encode(password);
+//        employee.setPassword(password);
+//
+//        hotelEmployeeService.addEmployee(employee);
+//
+//        return "Success";
+//    }
 
     //add hotel
     @PostMapping("/add")
