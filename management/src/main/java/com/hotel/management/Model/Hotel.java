@@ -34,7 +34,6 @@ public class Hotel {
 //    private List<HotelEmployee> elist;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-//    @JsonIgnore
     @JsonIgnoreProperties({"hotel"})
 //    @JoinColumn(referencedColumnName = "room_id")
     private List<Rooms> rooms;
